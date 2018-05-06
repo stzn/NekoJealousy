@@ -8,19 +8,17 @@
 
 import UIKit
 
-protocol ThumbnailDelagete {
-    func nakoSelected(selectedIndex: Int)
-}
-
 private let reuseIdentifier = "Cell"
 
 final class NekoThumbnailCollectionViewController: UIViewController {
 
-    let model: NekoThumbnailViewModel
     var selectedIndexPath: IndexPath?
-        
-    init(model: NekoThumbnailViewModel) {
-        self.model = model
+    
+    var didSelect: ((IndexPath) -> ())? = nil
+    
+    let items: [NekoInfo]
+    init(items: [NekoInfo]) {
+        self.items = items
         self.selectedIndexPath = nil
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,12 +27,6 @@ final class NekoThumbnailCollectionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func buildUpdates() -> [(NekoSelectViewController.ViewState) -> ()]{
-        return [{ [unowned self] s in
-            self.imageSelected(indexPath: s.selectedIndexPath)
-        }]
-    }
-    
     let collectionView: UICollectionView = {
 
         let layout = UICollectionViewFlowLayout()
@@ -99,13 +91,13 @@ extension NekoThumbnailCollectionViewController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.items.count
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        if  let imageName = model.items[indexPath.row].imageName,
+        if  let imageName = items[indexPath.row].imageName,
             let image = UIImage(named: imageName) {
             
             let imageView = UIImageView(image: image)
@@ -122,6 +114,6 @@ extension NekoThumbnailCollectionViewController: UICollectionViewDataSource {
 extension NekoThumbnailCollectionViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        model.imageSelected(indexPath: indexPath)
+        didSelect?(indexPath)
     }
 }

@@ -14,3 +14,25 @@ struct RenderingContext<State> {
     let pushViewController: (UIViewController) -> ()
     let popViewController: () -> ()
 }
+
+final class TargetAction {
+    
+    let execute: () -> ()
+    init(_ execute: @escaping () -> ()) {
+        self.execute = execute
+    }
+    @objc func action(_ sender: Any) {
+        execute()
+    }
+}
+
+struct Observer<State> {
+    var strongReferences: [Any]
+    var updates: [(State) -> ()]
+}
+
+//struct RenderedElement<Element, State> {
+//    var element: Element
+//    var strongReferences: [Any]
+//    var update: (State) -> ()
+//}

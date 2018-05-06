@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB2AAF32209E704600BC2CED /* NekoAdmireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */; };
 		AB3EE8782097BD9800D9FBD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE8772097BD9800D9FBD1 /* AppDelegate.swift */; };
 		AB3EE87D2097BD9800D9FBD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3EE87B2097BD9800D9FBD1 /* Main.storyboard */; };
 		AB3EE87F2097BD9900D9FBD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3EE87E2097BD9900D9FBD1 /* Assets.xcassets */; };
@@ -21,12 +22,12 @@
 		AB3EE89D2097CE9400D9FBD1 /* NekoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */; };
 		AB3EE8A02097D2AA00D9FBD1 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE89F2097D2AA00D9FBD1 /* UIViewEx.swift */; };
 		ABBBAA2C209917E2007929FB /* NekoMainImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */; };
-		ABBBAA3220993B33007929FB /* NekoThumbnailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBAA3120993B33007929FB /* NekoThumbnailViewModel.swift */; };
 		ABFE00AC209D20310045BB0F /* RenderingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE00AB209D20310045BB0F /* RenderingContext.swift */; };
 		ABFE16AB209BD9600002BE31 /* UIViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE16AA209BD9600002BE31 /* UIViewControllerEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoAdmireViewController.swift; sourceTree = "<group>"; };
 		AB3EE8742097BD9800D9FBD1 /* NekoJealousy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoJealousy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3EE8772097BD9800D9FBD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB3EE87C2097BD9800D9FBD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoInfo.swift; sourceTree = "<group>"; };
 		AB3EE89F2097D2AA00D9FBD1 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 		ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoMainImageViewController.swift; sourceTree = "<group>"; };
-		ABBBAA3120993B33007929FB /* NekoThumbnailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoThumbnailViewModel.swift; sourceTree = "<group>"; };
 		ABFE00AB209D20310045BB0F /* RenderingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingContext.swift; sourceTree = "<group>"; };
 		ABFE16AA209BD9600002BE31 /* UIViewControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB2AAF33209E705000BC2CED /* NekoAdmire */ = {
+			isa = PBXGroup;
+			children = (
+				AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */,
+			);
+			path = NekoAdmire;
+			sourceTree = "<group>";
+		};
 		AB3EE86B2097BD9800D9FBD1 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +86,8 @@
 		AB3EE8762097BD9800D9FBD1 /* NekoJealousy */ = {
 			isa = PBXGroup;
 			children = (
+				AB2AAF33209E705000BC2CED /* NekoAdmire */,
+				AB3EE89E2097D28B00D9FBD1 /* Extensions */,
 				AB3EE8912097C34F00D9FBD1 /* NekoSelect */,
 				AB3EE8772097BD9800D9FBD1 /* AppDelegate.swift */,
 				AB3EE87B2097BD9800D9FBD1 /* Main.storyboard */,
@@ -96,12 +106,10 @@
 		AB3EE8912097C34F00D9FBD1 /* NekoSelect */ = {
 			isa = PBXGroup;
 			children = (
-				AB3EE89E2097D28B00D9FBD1 /* Extensions */,
 				AB3EE8922097C44600D9FBD1 /* NekoSelectViewController.swift */,
 				AB3EE8982097CA3B00D9FBD1 /* NekoThumbnailCollectionViewController.swift */,
 				AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */,
 				ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */,
-				ABBBAA3120993B33007929FB /* NekoThumbnailViewModel.swift */,
 				ABFE00AB209D20310045BB0F /* RenderingContext.swift */,
 			);
 			path = NekoSelect;
@@ -190,10 +198,10 @@
 			files = (
 				AB3EE8A02097D2AA00D9FBD1 /* UIViewEx.swift in Sources */,
 				AB3EE88C2097BFC700D9FBD1 /* Coordinator.swift in Sources */,
+				AB2AAF32209E704600BC2CED /* NekoAdmireViewController.swift in Sources */,
 				AB3EE8992097CA3B00D9FBD1 /* NekoThumbnailCollectionViewController.swift in Sources */,
 				AB3EE88E2097C0A100D9FBD1 /* AppCoordinator.swift in Sources */,
 				ABFE16AB209BD9600002BE31 /* UIViewControllerEx.swift in Sources */,
-				ABBBAA3220993B33007929FB /* NekoThumbnailViewModel.swift in Sources */,
 				AB3EE89D2097CE9400D9FBD1 /* NekoInfo.swift in Sources */,
 				AB3EE8782097BD9800D9FBD1 /* AppDelegate.swift in Sources */,
 				AB3EE88A2097BED500D9FBD1 /* RootCoordinator.swift in Sources */,

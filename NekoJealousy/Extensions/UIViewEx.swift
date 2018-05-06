@@ -62,6 +62,11 @@ extension UIView {
     }
 
     @discardableResult
+    func centerYConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
+        return self.centerYAnchor.constraint(equalTo: to.centerYAnchor, constant: constant ?? 0)
+    }
+
+    @discardableResult
     func left(to: UIView, constant: CGFloat? = nil) -> UIView  {
         self.leftAnchor.constraint(equalTo: to.leftAnchor, constant: constant ?? 0).isActive = true
         return self
@@ -128,5 +133,4 @@ extension UIView {
             self.bottomAnchor.constraint(equalTo: to.bottomAnchor, constant: bottom ?? 0)
         ]
     }
-
 }
