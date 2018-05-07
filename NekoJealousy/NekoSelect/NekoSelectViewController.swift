@@ -84,7 +84,7 @@ final class NekoSelectViewController: UIViewController, RootViewController {
             let vc = NekoAdmireViewController(info: info)
             context.pushViewController(vc)
         }
-        mainImageVC.button.addTarget(admireTapped, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
+        mainImageVC.setAdmireTapped(admireTapped)
         
         observer.strongReferences.append(admireTapped)
         

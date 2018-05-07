@@ -8,18 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 final class NekoThumbnailCollectionViewController: UIViewController {
 
-    var selectedIndexPath: IndexPath?
-    
     var didSelect: ((IndexPath) -> ())? = nil
     
     let items: [NekoInfo]
     init(items: [NekoInfo]) {
         self.items = items
-        self.selectedIndexPath = nil
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,27 +22,7 @@ final class NekoThumbnailCollectionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let collectionView: UICollectionView = {
-
-        let layout = UICollectionViewFlowLayout()
-        
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        layout.scrollDirection = .horizontal
-        
-        let size = UIScreen.main.bounds
-        
-        let collectionView = UICollectionView(frame: size, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.backgroundColor = .white
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return collectionView
-    }()
-    
+    let  collectionView = NekoThumbnailCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,17 +44,7 @@ final class NekoThumbnailCollectionViewController: UIViewController {
     
     func imageSelected(indexPath: IndexPath?) {
         
-        if let i = selectedIndexPath, let cell = collectionView.cellForItem(at: i) {
-            cell.layer.borderWidth = 0
-        }
-        
-        guard let i = indexPath, let cell = collectionView.cellForItem(at: i) else {
-            return
-        }
-        cell.layer.borderWidth = 3
-        cell.layer.borderColor = UIColor.red.cgColor
-        
-        selectedIndexPath = indexPath
+        collectionView.setSelectedCell(indexPath: indexPath)
     }
 }
 
@@ -89,25 +54,12 @@ extension NekoThumbnailCollectionViewController: UICollectionViewDataSource {
         return 1
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
-        if  let imageName = items[indexPath.row].imageName,
-            let image = UIImage(named: imageName) {
-            
-            let imageView = UIImageView(image: image)
-            cell.contentView.addSubview(imageView)
-            
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.fill(parent: cell.contentView)
-        }
-        
-        return cell
+        return self.collectionView.setCell(indexPath: indexPath, info: items[indexPath.row])
     }
 }
 

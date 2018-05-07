@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1A278520A0FE8100B287E2 /* NekoAdmireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A278420A0FE8100B287E2 /* NekoAdmireView.swift */; };
+		AB1A278720A1027000B287E2 /* NekoMainImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A278620A1027000B287E2 /* NekoMainImageView.swift */; };
+		AB1A278920A105FB00B287E2 /* NekoThumbnailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A278820A105FB00B287E2 /* NekoThumbnailCollectionView.swift */; };
 		AB2AAF32209E704600BC2CED /* NekoAdmireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */; };
 		AB3EE8782097BD9800D9FBD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE8772097BD9800D9FBD1 /* AppDelegate.swift */; };
 		AB3EE87D2097BD9800D9FBD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3EE87B2097BD9800D9FBD1 /* Main.storyboard */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB1A278420A0FE8100B287E2 /* NekoAdmireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoAdmireView.swift; sourceTree = "<group>"; };
+		AB1A278620A1027000B287E2 /* NekoMainImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoMainImageView.swift; sourceTree = "<group>"; };
+		AB1A278820A105FB00B287E2 /* NekoThumbnailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoThumbnailCollectionView.swift; sourceTree = "<group>"; };
 		AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoAdmireViewController.swift; sourceTree = "<group>"; };
 		AB3EE8742097BD9800D9FBD1 /* NekoJealousy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoJealousy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3EE8772097BD9800D9FBD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				AB2AAF31209E704600BC2CED /* NekoAdmireViewController.swift */,
+				AB1A278420A0FE8100B287E2 /* NekoAdmireView.swift */,
 			);
 			path = NekoAdmire;
 			sourceTree = "<group>";
@@ -111,6 +118,8 @@
 				AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */,
 				ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */,
 				ABFE00AB209D20310045BB0F /* RenderingContext.swift */,
+				AB1A278620A1027000B287E2 /* NekoMainImageView.swift */,
+				AB1A278820A105FB00B287E2 /* NekoThumbnailCollectionView.swift */,
 			);
 			path = NekoSelect;
 			sourceTree = "<group>";
@@ -200,12 +209,15 @@
 				AB3EE88C2097BFC700D9FBD1 /* Coordinator.swift in Sources */,
 				AB2AAF32209E704600BC2CED /* NekoAdmireViewController.swift in Sources */,
 				AB3EE8992097CA3B00D9FBD1 /* NekoThumbnailCollectionViewController.swift in Sources */,
+				AB1A278720A1027000B287E2 /* NekoMainImageView.swift in Sources */,
 				AB3EE88E2097C0A100D9FBD1 /* AppCoordinator.swift in Sources */,
+				AB1A278520A0FE8100B287E2 /* NekoAdmireView.swift in Sources */,
 				ABFE16AB209BD9600002BE31 /* UIViewControllerEx.swift in Sources */,
 				AB3EE89D2097CE9400D9FBD1 /* NekoInfo.swift in Sources */,
 				AB3EE8782097BD9800D9FBD1 /* AppDelegate.swift in Sources */,
 				AB3EE88A2097BED500D9FBD1 /* RootCoordinator.swift in Sources */,
 				ABFE00AC209D20310045BB0F /* RenderingContext.swift in Sources */,
+				AB1A278920A105FB00B287E2 /* NekoThumbnailCollectionView.swift in Sources */,
 				AB3EE8952097C5C700D9FBD1 /* RootViewController.swift in Sources */,
 				ABBBAA2C209917E2007929FB /* NekoMainImageViewController.swift in Sources */,
 				AB3EE8932097C44600D9FBD1 /* NekoSelectViewController.swift in Sources */,

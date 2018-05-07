@@ -11,9 +11,11 @@ import UIKit
 final class NekoAdmireViewController: UIViewController, RootViewController {
     
     let info: NekoInfo
+    let baseView: NekoAdmireView
     
     init(info: NekoInfo) {
         self.info = info
+        baseView = NekoAdmireView(info: info)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,81 +23,23 @@ final class NekoAdmireViewController: UIViewController, RootViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let stackView: UIStackView = {
-        let sv = UIStackView()
-        sv.distribution = .fill
-        sv.axis = .vertical
-        sv.alignment = .center
-        sv.spacing = 1
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        return sv
-    }()
-    
-    let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "noimage")
-        iv.isUserInteractionEnabled = true
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.height(constant: UIScreen.main.bounds.width * 0.8)
-        iv.aspecRatio(multiplier: 1)
-        return iv
-    }()
-    
-    let modeImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "question")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.height(constant: 80)
-        iv.aspecRatio(multiplier: 1)
-        return iv
-    }()
-    
-    let label: UILabel = {
-        let l = UILabel()
-        l.numberOfLines = 1
-        l.text = "こすって"
-        l.translatesAutoresizingMaskIntoConstraints = false
-        return l
-    }()
-    
-    
     var angerTimer: Timer?
     var happyTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
+        view.addSubview(baseView)
+        baseView.fill(parent: view)
         
-        stackView.addArrangedSubview(label)
-        stackView.setCustomSpacing(20, after: label)
-        if let name = info.imageName {
-            imageView.image = UIImage(named: name)
-        }
-        
-        imageView.addSubview(modeImageView)
-        modeImageView.right(to: imageView, constant: 12).top(to: imageView, constant: 12)
-        
-        stackView.addArrangedSubview(imageView)
-        self.view.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.leftConstraint(to: self.view, constant: 12),
-            stackView.rightConstraint(to: self.view, constant: -12),
-            stackView.centerYConstraint(to: self.view),
-            ])
-
         setAngerTimer()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         setHappyTimer()
         angerTimer?.invalidate()
-        modeImageView.image = #imageLiteral(resourceName: "question")
+        baseView.modeImageView.image = #imageLiteral(resourceName: "question")
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -110,7 +54,7 @@ final class NekoAdmireViewController: UIViewController, RootViewController {
     private func setAngerTimer() {
         angerTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
             guard let s = self else { return }
-            s.modeImageView.image = #imageLiteral(resourceName: "anger")
+            s.baseView.modeImageView.image = #imageLiteral(resourceName: "anger")
             s.angerTimer?.invalidate()
         }
     }
@@ -118,7 +62,7 @@ final class NekoAdmireViewController: UIViewController, RootViewController {
     private func setHappyTimer() {
         happyTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
             guard let s = self else { return }
-            s.modeImageView.image = #imageLiteral(resourceName: "happy")
+            s.baseView.modeImageView.image = #imageLiteral(resourceName: "happy")
             s.happyTimer?.invalidate()
         }
     }
