@@ -90,21 +90,14 @@ final class NekoSelectViewController: UIViewController, RootViewController {
         
         observer.updates.append({ s in mainImageVC.setNekoInfo(info: s.info) })
         
-        add(collectionVC,
-            layout: [
-                collectionVC.view.leftConstraint(to: self.view, constant: 12),
-                collectionVC.view.rightConstraint(to: self.view, constant: -12),
-                collectionVC.view.topConstraint(to: self.view, constant: 12),
-                collectionVC.view.heightConstraint(constant: 200)
-            ])
+        var constraints = collectionVC.view.constraintArray(to: self.view, left: 12, top: 12, right: -12, bottom: nil)
+        constraints.append(collectionVC.view.anchorLayout(\UIView.heightAnchor, constant: 200))
+
+        add(collectionVC, layout: constraints)
         
-        add(mainImageVC,
-            layout: [
-                mainImageVC.view.leftConstraint(to: self.view, constant: 12),
-                mainImageVC.view.rightConstraint(to: self.view, constant: -12),
-                mainImageVC.view.topConstraintBottom(to: collectionVC.view, constant: 12),
-                //mainImageVC.view.bottomConstraint(to: self.view, constant: 12)
-                ])
+        var mainConstraints = mainImageVC.view.constraintArray(to: self.view, left: 12, top: nil, right: -12, bottom: nil)
+        mainConstraints.append(mainImageVC.view.anchorLayout(view: collectionVC.view, from: \UIView.topAnchor, to: \UIView.bottomAnchor))
+        add(mainImageVC, layout: mainConstraints)
     }
     
     override func didReceiveMemoryWarning() {

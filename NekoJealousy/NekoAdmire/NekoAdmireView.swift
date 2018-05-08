@@ -27,7 +27,6 @@ final class NekoAdmireView: UIView {
         iv.image = #imageLiteral(resourceName: "noimage")
         iv.isUserInteractionEnabled = true
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.height(constant: UIScreen.main.bounds.width * 0.8)
         iv.aspecRatio(multiplier: 1)
         return iv
     }()
@@ -38,7 +37,7 @@ final class NekoAdmireView: UIView {
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "question")
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.height(constant: 80)
+        iv.anchor(\UIView.heightAnchor , constant: 80)
         iv.aspecRatio(multiplier: 1)
         return iv
     }()
@@ -76,16 +75,14 @@ final class NekoAdmireView: UIView {
         }
         
         imageView.addSubview(modeImageView)
-        modeImageView.right(to: imageView, constant: 12).top(to: imageView, constant: 12)
+        NSLayoutConstraint.activate(modeImageView.constraintArray(to: imageView, left: nil, top: 12, right: 0, bottom: nil))
         
         stackView.addArrangedSubview(imageView)
         addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.leftConstraint(to: self, constant: 12),
-            stackView.rightConstraint(to: self, constant: -12),
-            stackView.centerYConstraint(to: self),
-            ])
+        var constraints = stackView.constraintArray(to: self, left: 12, top: nil, right: 0, bottom: nil)
+        constraints.append(stackView.anchorLayout(\UIView.centerYAnchor, to: self))
+        NSLayoutConstraint.activate(constraints)
         
         translatesAutoresizingMaskIntoConstraints = false
     }

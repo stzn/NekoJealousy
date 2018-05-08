@@ -9,128 +9,109 @@
 import UIKit
 
 extension UIView {
+        
+    func anchor<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>,
+                                    to view: UIView,
+                                    constant: CGFloat = 0) where Anchor: NSLayoutAnchor<AnchorType>{
+        self[keyPath: anchorPath].constraint(equalTo: view[keyPath: anchorPath], constant: constant).isActive = true
+    }
+
+    func anchor<Anchor>(_ anchorPath: KeyPath<UIView, Anchor>, constant: CGFloat) where Anchor: NSLayoutDimension {
+        self[keyPath: anchorPath].constraint(equalToConstant: constant).isActive = true
+    }
+
+    func anchorLayout<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>,
+                                    to view: UIView,
+                                    constant: CGFloat = 0) -> NSLayoutConstraint where Anchor: NSLayoutAnchor<AnchorType> {
+        return self[keyPath: anchorPath].constraint(equalTo: view[keyPath: anchorPath], constant: constant)
+    }
+
+    func anchorLayout<Anchor, AnchorType>(view: UIView, from: KeyPath<UIView, Anchor>, to: KeyPath<UIView, Anchor>)
+        -> NSLayoutConstraint where Anchor: NSLayoutAnchor<AnchorType> {
+        return self[keyPath: from].constraint(equalTo: view[keyPath: to])
+    }
+    
+    func anchorLayout<Anchor>(_ anchorPath: KeyPath<UIView, Anchor>, constant: CGFloat)
+        -> NSLayoutConstraint where Anchor: NSLayoutDimension {
+        return self[keyPath: anchorPath].constraint(equalToConstant: constant)
+    }
     
     func fill(parent: UIView) {
-        NSLayoutConstraint.activate([
-            self.leftAnchor.constraint(equalTo: parent.leftAnchor),
-            self.topAnchor.constraint(equalTo: parent.topAnchor),
-            self.rightAnchor.constraint(equalTo: parent.rightAnchor),
-            self.bottomAnchor.constraint(equalTo: parent.bottomAnchor)
-            ])
+        anchor(\UIView.leftAnchor, to: parent)
+        anchor(\UIView.topAnchor, to: parent)
+        anchor(\UIView.rightAnchor, to: parent)
+        anchor(\UIView.bottomAnchor, to: parent)
     }
     
-    @discardableResult
-    func leftConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.leftAnchor.constraint(equalTo: to.leftAnchor, constant: constant ?? 0)
-    }
-    
-    @discardableResult
-    func rightConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.rightAnchor.constraint(equalTo: to.rightAnchor, constant: constant ?? 0)
-        
-    }
-    
-    @discardableResult
-    func topConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.topAnchor.constraint(equalTo: to.topAnchor, constant: constant ?? 0)
-    }
-    
-    @discardableResult
-    func bottomConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.bottomAnchor.constraint(equalTo: to.bottomAnchor, constant: constant ?? 0)
-    }
-
-    @discardableResult
-    func leftConstraintRight(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.leftAnchor.constraint(equalTo: to.rightAnchor, constant: constant ?? 0)
-    }
-
-    @discardableResult
-    func topConstraintBottom(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.topAnchor.constraint(equalTo: to.bottomAnchor, constant: constant ?? 0)
-    }
-    
-
-    @discardableResult
-    func heightConstraint(constant: CGFloat) -> NSLayoutConstraint  {
-        return self.heightAnchor.constraint(equalToConstant: constant)
-    }
-    
-    @discardableResult
-    func widthConstraint(constant: CGFloat) -> NSLayoutConstraint  {
-        return self.widthAnchor.constraint(equalToConstant: constant)
-    }
-
-    @discardableResult
-    func centerYConstraint(to: UIView, constant: CGFloat? = nil) -> NSLayoutConstraint  {
-        return self.centerYAnchor.constraint(equalTo: to.centerYAnchor, constant: constant ?? 0)
-    }
-
-    @discardableResult
-    func left(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.leftAnchor.constraint(equalTo: to.leftAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func right(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.rightAnchor.constraint(equalTo: to.rightAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func top(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.topAnchor.constraint(equalTo: to.topAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func bottom(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.bottomAnchor.constraint(equalTo: to.bottomAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func height(constant: CGFloat) -> UIView  {
-        self.heightAnchor.constraint(equalToConstant: constant).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func width(constant: CGFloat) -> UIView  {
-        self.widthAnchor.constraint(equalToConstant: constant).isActive = true
-        return self
-    }
-    
-    @discardableResult
-    func aspecRatio(multiplier: CGFloat) -> UIView  {
-        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: multiplier)
-        return self
-    }
-
-    
-    @discardableResult
-    func centerX(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.centerXAnchor.constraint(equalTo: to.centerXAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
-    @discardableResult
-    func centerY(to: UIView, constant: CGFloat? = nil) -> UIView  {
-        self.centerYAnchor.constraint(equalTo: to.centerYAnchor, constant: constant ?? 0).isActive = true
-        return self
-    }
-
     func constraintArray(to: UIView,
                          left: CGFloat? = nil,
                          top: CGFloat? = nil,
                          right: CGFloat? = nil,
                          bottom: CGFloat? = nil) -> [NSLayoutConstraint] {
-        return [
-            self.leftAnchor.constraint(equalTo: to.leftAnchor, constant: left ?? 0),
-            self.topAnchor.constraint(equalTo: to.topAnchor, constant: top ?? 0),
-            self.rightAnchor.constraint(equalTo: to.rightAnchor, constant: right ?? 0),
-            self.bottomAnchor.constraint(equalTo: to.bottomAnchor, constant: bottom ?? 0)
-        ]
+        
+        var constraints: [NSLayoutConstraint] = []
+        
+        if let left = left {
+            constraints.append(anchorLayout(\UIView.leftAnchor, to: to, constant: left))
+        }
+
+        if let top = top {
+            constraints.append(anchorLayout(\UIView.topAnchor, to: to, constant: top))
+        }
+
+        if let right = right {
+            constraints.append(anchorLayout(\UIView.rightAnchor, to: to, constant: right))
+        }
+
+        if let bottom = bottom {
+            constraints.append(anchorLayout(\UIView.bottomAnchor, to: to, constant: bottom))
+        }
+        return constraints
+    }
+
+    @discardableResult
+    static func <(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.leadingAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func ^(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.topAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func >(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.trailingAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func -(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.centerYAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func |(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.centerXAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func ==(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.widthAnchor, to: view)
+        return view
+    }
+    
+    @discardableResult
+    static func ||(view: UIView, subview: UIView) -> UIView {
+        subview.anchor(\UIView.heightAnchor, to: view)
+        return view
+    }
+    
+    func aspecRatio(multiplier: CGFloat)  {
+        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: multiplier).isActive = true
     }
 }

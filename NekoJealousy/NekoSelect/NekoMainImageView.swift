@@ -16,7 +16,6 @@ final class NekoMainImageView: UIView {
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "noimage")
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.height(constant: UIScreen.main.bounds.width * 0.8)
         iv.aspecRatio(multiplier: 1)
         return iv
     }()
@@ -55,7 +54,7 @@ final class NekoMainImageView: UIView {
         b.setTitle("にゃー", for: .highlighted)
         b.setTitle("猫選べ", for: .disabled)
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.width(constant: UIScreen.main.bounds.width * 0.6)
+        b.anchor(\UIView.widthAnchor, constant: UIScreen.main.bounds.width * 0.6)
         b.layer.borderColor = UIColor.black.cgColor
         b.layer.borderWidth = 3
         b.layer.cornerRadius = 10
