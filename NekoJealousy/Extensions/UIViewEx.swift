@@ -8,110 +8,57 @@
 
 import UIKit
 
+typealias Constraint = (_ child: UIView, _ parent: UIView) -> NSLayoutConstraint
+
+func equal<Axis, Anchor>(_ keyPath: KeyPath<UIView, Anchor>, _ to: KeyPath<UIView, Anchor>, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutAnchor<Axis> {
+    return { view, parent in
+        view[keyPath: keyPath].constraint(equalTo: parent[keyPath: to], constant: constant)
+    }
+}
+
+func equal<Axis, Anchor>(_ keyPath: KeyPath<UIView, Anchor>, _ toKeyPath: KeyPath<UIView, Anchor>, _ from: UIView, _ to: UIView, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutAnchor<Axis> {
+    return { _, _ in
+        from[keyPath: keyPath].constraint(equalTo: to[keyPath: toKeyPath], constant: constant)
+    }
+}
+func equal<Axis, Anchor>(_ keyPath: KeyPath<UIView, Anchor>, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutAnchor<Axis> {
+    return equal(keyPath, keyPath, constant: constant)
+}
+
+func equal<Anchor>(_ keyPath: KeyPath<UIView, Anchor>, constant: CGFloat) -> Constraint where Anchor: NSLayoutDimension {
+    return { view, _ in
+        view[keyPath: keyPath].constraint(equalToConstant: constant)
+    }
+}
+
+func aspectRatio<Anchor>(_ keyPath: KeyPath<UIView, Anchor>, _ to: KeyPath<UIView, Anchor>, multiplier: CGFloat) -> Constraint where Anchor: NSLayoutDimension {
+    return { view, _ in
+        view[keyPath: keyPath].constraint(equalTo: view[keyPath: to], multiplier: multiplier)
+    }
+}
+
+func fill() -> [Constraint] {
+    return [
+        equal(\UIView.leftAnchor),
+        equal(\UIView.topAnchor),
+        equal(\UIView.rightAnchor),
+        equal(\UIView.bottomAnchor)
+    ]
+}
+
 extension UIView {
-        
-    func anchor<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>,
-                                    to view: UIView,
-                                    constant: CGFloat = 0) where Anchor: NSLayoutAnchor<AnchorType>{
-        self[keyPath: anchorPath].constraint(equalTo: view[keyPath: anchorPath], constant: constant).isActive = true
+    func addSubview(_ child: UIView, constraints: [Constraint]) {
+        addSubview(child)
+        child.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(constraints.map { $0(child, self) })
     }
+}
 
-    func anchor<Anchor>(_ anchorPath: KeyPath<UIView, Anchor>, constant: CGFloat) where Anchor: NSLayoutDimension {
-        self[keyPath: anchorPath].constraint(equalToConstant: constant).isActive = true
-    }
-
-    func anchorLayout<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>,
-                                    to view: UIView,
-                                    constant: CGFloat = 0) -> NSLayoutConstraint where Anchor: NSLayoutAnchor<AnchorType> {
-        return self[keyPath: anchorPath].constraint(equalTo: view[keyPath: anchorPath], constant: constant)
-    }
-
-    func anchorLayout<Anchor, AnchorType>(view: UIView, from: KeyPath<UIView, Anchor>, to: KeyPath<UIView, Anchor>)
-        -> NSLayoutConstraint where Anchor: NSLayoutAnchor<AnchorType> {
-        return self[keyPath: from].constraint(equalTo: view[keyPath: to])
-    }
+extension UIStackView {
     
-    func anchorLayout<Anchor>(_ anchorPath: KeyPath<UIView, Anchor>, constant: CGFloat)
-        -> NSLayoutConstraint where Anchor: NSLayoutDimension {
-        return self[keyPath: anchorPath].constraint(equalToConstant: constant)
-    }
-    
-    func fill(parent: UIView) {
-        anchor(\UIView.leftAnchor, to: parent)
-        anchor(\UIView.topAnchor, to: parent)
-        anchor(\UIView.rightAnchor, to: parent)
-        anchor(\UIView.bottomAnchor, to: parent)
-    }
-    
-    func constraintArray(to: UIView,
-                         left: CGFloat? = nil,
-                         top: CGFloat? = nil,
-                         right: CGFloat? = nil,
-                         bottom: CGFloat? = nil) -> [NSLayoutConstraint] {
-        
-        var constraints: [NSLayoutConstraint] = []
-        
-        if let left = left {
-            constraints.append(anchorLayout(\UIView.leftAnchor, to: to, constant: left))
-        }
-
-        if let top = top {
-            constraints.append(anchorLayout(\UIView.topAnchor, to: to, constant: top))
-        }
-
-        if let right = right {
-            constraints.append(anchorLayout(\UIView.rightAnchor, to: to, constant: right))
-        }
-
-        if let bottom = bottom {
-            constraints.append(anchorLayout(\UIView.bottomAnchor, to: to, constant: bottom))
-        }
-        return constraints
-    }
-
-    @discardableResult
-    static func <(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.leadingAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func ^(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.topAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func >(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.trailingAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func -(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.centerYAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func |(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.centerXAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func ==(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.widthAnchor, to: view)
-        return view
-    }
-    
-    @discardableResult
-    static func ||(view: UIView, subview: UIView) -> UIView {
-        subview.anchor(\UIView.heightAnchor, to: view)
-        return view
-    }
-    
-    func aspecRatio(multiplier: CGFloat)  {
-        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: multiplier).isActive = true
+    func addArrangedSubview(_ child: UIView, constraints: [Constraint]) {
+        addArrangedSubview(child)
+        child.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(constraints.map { $0(child, self) })
     }
 }

@@ -32,14 +32,11 @@ final class NekoThumbnailCollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        self.view.addSubview(collectionView)
-        
-        collectionView.fill(parent: self.view)
+        self.view.addSubview(collectionView, constraints: fill())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func imageSelected(indexPath: IndexPath?) {

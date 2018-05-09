@@ -53,10 +53,7 @@ final class NekoThumbnailCollectionView: UICollectionView {
             let image = UIImage(named: imageName) {
             
             let imageView = UIImageView(image: image)
-            cell.contentView.addSubview(imageView)
-            
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.fill(parent: cell.contentView)
+            cell.contentView.addSubview(imageView, constraints: fill())            
         }
         return cell
     }

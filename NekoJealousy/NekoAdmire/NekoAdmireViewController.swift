@@ -30,8 +30,7 @@ final class NekoAdmireViewController: UIViewController, RootViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        view.addSubview(baseView)
-        baseView.fill(parent: view)
+        view.addSubview(baseView, constraints: fill())
         
         setAngerTimer()
     }

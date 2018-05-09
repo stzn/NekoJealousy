@@ -16,7 +16,6 @@ final class NekoAdmireView: UIView {
         sv.axis = .vertical
         sv.alignment = .center
         sv.spacing = 1
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -26,8 +25,6 @@ final class NekoAdmireView: UIView {
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "noimage")
         iv.isUserInteractionEnabled = true
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.aspecRatio(multiplier: 1)
         return iv
     }()
     
@@ -36,9 +33,6 @@ final class NekoAdmireView: UIView {
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "question")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.anchor(\UIView.heightAnchor , constant: 80)
-        iv.aspecRatio(multiplier: 1)
         return iv
     }()
     
@@ -46,7 +40,6 @@ final class NekoAdmireView: UIView {
         let l = UILabel()
         l.numberOfLines = 1
         l.text = "こすって"
-        l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
 
@@ -74,15 +67,22 @@ final class NekoAdmireView: UIView {
             imageView.image = UIImage(named: name)
         }
         
-        imageView.addSubview(modeImageView)
-        NSLayoutConstraint.activate(modeImageView.constraintArray(to: imageView, left: nil, top: 12, right: 0, bottom: nil))
+        imageView.addSubview(modeImageView, constraints: [
+                equal(\.topAnchor, constant: 12),
+                equal(\.rightAnchor, constant: 0),
+                equal(\.heightAnchor, constant: 80),
+                aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1)
+        ])
         
-        stackView.addArrangedSubview(imageView)
-        addSubview(stackView)
+        stackView.addArrangedSubview(imageView, constraints: [
+            aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1),
+        ])
         
-        var constraints = stackView.constraintArray(to: self, left: 12, top: nil, right: 0, bottom: nil)
-        constraints.append(stackView.anchorLayout(\UIView.centerYAnchor, to: self))
-        NSLayoutConstraint.activate(constraints)
+        addSubview(stackView, constraints: [
+            equal(\.leftAnchor, constant: 12),
+            equal(\.rightAnchor, constant: -12),
+            equal(\.centerYAnchor)
+        ])
         
         translatesAutoresizingMaskIntoConstraints = false
     }

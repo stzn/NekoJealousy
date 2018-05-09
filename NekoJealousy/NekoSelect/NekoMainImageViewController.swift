@@ -26,8 +26,7 @@ final class NekoMainImageViewController: UIViewController {
         
         self.view.backgroundColor = .white
        
-        self.view.addSubview(baseView)
-        baseView.fill(parent: view)
+        self.view.addSubview(baseView, constraints: fill())
     }
     
     override func didReceiveMemoryWarning() {

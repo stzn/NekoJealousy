@@ -9,14 +9,12 @@
 import UIKit
 
 final class NekoMainImageView: UIView {
-
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "noimage")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.aspecRatio(multiplier: 1)
         return iv
     }()
     
@@ -24,7 +22,6 @@ final class NekoMainImageView: UIView {
         let l = UILabel()
         l.numberOfLines = 0
         l.text = "未選択"
-        l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
     
@@ -33,7 +30,6 @@ final class NekoMainImageView: UIView {
         let l = UILabel()
         l.numberOfLines = 0
         l.text = "猫を選択してください"
-        l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
     
@@ -43,7 +39,6 @@ final class NekoMainImageView: UIView {
         sv.axis = .vertical
         sv.alignment = .center
         sv.spacing = 1
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -53,15 +48,13 @@ final class NekoMainImageView: UIView {
         b.setTitle("愛でる", for: .normal)
         b.setTitle("にゃー", for: .highlighted)
         b.setTitle("猫選べ", for: .disabled)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.anchor(\UIView.widthAnchor, constant: UIScreen.main.bounds.width * 0.6)
         b.layer.borderColor = UIColor.black.cgColor
         b.layer.borderWidth = 3
         b.layer.cornerRadius = 10
         b.isEnabled = false
         return b
     }()
-
+    
     private override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -74,18 +67,21 @@ final class NekoMainImageView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setup() {
         
-        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(imageView, constraints: [
+            aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1)
+        ])
         stackView.setCustomSpacing(12, after: imageView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(detailLabel)
         stackView.setCustomSpacing(12, after: detailLabel)
-        stackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(button, constraints: [
+            equal(\.widthAnchor, constant: UIScreen.main.bounds.width * 0.6)
+        ])
         
-        self.addSubview(stackView)
-        stackView.fill(parent: self)
+        self.addSubview(stackView, constraints: fill())
         
         translatesAutoresizingMaskIntoConstraints = false
     }
@@ -107,3 +103,4 @@ final class NekoMainImageView: UIView {
         button.addTarget(target, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
     }
 }
+

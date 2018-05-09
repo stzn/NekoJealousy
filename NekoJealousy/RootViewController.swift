@@ -9,25 +9,21 @@
 import UIKit
 
 protocol RootViewController {
-    func add(_ childViewController: UIViewController, layout: [NSLayoutConstraint]?)
+    func add(_ childViewController: UIViewController, layout: [Constraint]?)
     func remove(_ childViewController: UIViewController)
 }
 
 extension RootViewController where Self: UIViewController {
     
-    func add(_ childViewController: UIViewController, layout: [NSLayoutConstraint]?) {
+    func add(_ childViewController: UIViewController, layout: [Constraint]?) {
         
         addChildViewController(childViewController)
-        view.addSubview(childViewController.view)
         
         childViewController.view.translatesAutoresizingMaskIntoConstraints = false
         if let layout = layout {
-            
-            NSLayoutConstraint.activate(layout)
-            
+            view.addSubview(childViewController.view, constraints: layout)
         } else {
-            
-            childViewController.view.fill(parent: view)
+            view.addSubview(childViewController.view, constraints: fill())
             
         }
         childViewController.didMove(toParentViewController: self)
