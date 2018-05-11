@@ -10,10 +10,7 @@ import UIKit
 
 final class NekoMainImageViewController: UIViewController {
     
-    let baseView: NekoMainImageView
-    
     init() {
-        baseView = NekoMainImageView()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,12 +18,15 @@ final class NekoMainImageViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    override func loadView() {
+        self.view = NekoMainImageView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
-       
-        self.view.addSubview(baseView, constraints: fill())
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,10 +34,10 @@ final class NekoMainImageViewController: UIViewController {
     }
 
     func setNekoInfo(info: NekoInfo?) {
-        baseView.setNekoInfo(info: info)
+        (view as? NekoMainImageView)?.setNekoInfo(info: info)
     }
     
     func setAdmireTapped(_ target: TargetAction) {
-        baseView.setAdmireButtonAction(target)
+        (view as? NekoMainImageView)?.setAdmireButtonAction(target)
     }
 }

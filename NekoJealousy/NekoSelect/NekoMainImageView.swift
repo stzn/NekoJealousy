@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class NekoMainImageView: UIView {
+final class NekoMainImageView: UIView, AdaptiveInterface {
+    
+    var adaptiveElements: [AdaptiveElement] = []
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -38,7 +40,7 @@ final class NekoMainImageView: UIView {
         sv.distribution = .fill
         sv.axis = .vertical
         sv.alignment = .center
-        sv.spacing = 1
+        sv.spacing = 12
         return sv
     }()
     
@@ -68,22 +70,38 @@ final class NekoMainImageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        update(for: traitCollection)
+    }
+    
     private func setup() {
         
-        stackView.addArrangedSubview(imageView, constraints: [
-            aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1)
-        ])
-        stackView.setCustomSpacing(12, after: imageView)
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(detailLabel)
-        stackView.setCustomSpacing(12, after: detailLabel)
+        stackView.addArrangedSubview(imageView)
+        
+        addConstraints(for: [SizeClass.horizontalCompact, SizeClass.verticalCompact],
+                       constraints: equal(\.heightAnchor, constant: 0)(imageView, stackView))
+        
+        stackView.addArrangedSubview(titleLabel, constraints: [
+            equal(\.heightAnchor, constant: titleLabel.intrinsicContentSize.height)
+            ])
+        
+        stackView.addArrangedSubview(detailLabel, constraints: [
+            equal(\.heightAnchor, constant: detailLabel.intrinsicContentSize.height)
+            ])
         stackView.addArrangedSubview(button, constraints: [
-            equal(\.widthAnchor, constant: UIScreen.main.bounds.width * 0.6)
-        ])
+            equal(\.widthAnchor, constant: UIScreen.main.bounds.width * 0.6),
+            equal(\.heightAnchor, constant: button.intrinsicContentSize.height)
+            ])
         
-        self.addSubview(stackView, constraints: fill())
+        addSubview(stackView, constraints: [
+            equal(\.topAnchor),
+            equal(\.leftAnchor),
+            equal(\.rightAnchor)
+            ])
         
-        translatesAutoresizingMaskIntoConstraints = false
+        addConstraints(for: [SizeClass.verticalRegular],
+                       constraints: equal(\.bottomAnchor)(stackView, self))
     }
     
     func setNekoInfo(info: NekoInfo?) {
@@ -103,4 +121,5 @@ final class NekoMainImageView: UIView {
         button.addTarget(target, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
     }
 }
+
 

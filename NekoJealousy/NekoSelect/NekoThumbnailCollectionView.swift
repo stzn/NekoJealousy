@@ -19,16 +19,15 @@ final class NekoThumbnailCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
     }
 
+    
     convenience init() {
         let l = UICollectionViewFlowLayout()
         
         l.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        l.itemSize = CGSize(width: 100, height: 100)
         l.minimumInteritemSpacing = 0
         l.minimumLineSpacing = 0
         l.scrollDirection = .horizontal
-        
-        self.init(frame: UIScreen.main.bounds, collectionViewLayout: l)
+        self.init(frame: .zero, collectionViewLayout: l)
         
         setup()
     }
@@ -71,5 +70,9 @@ final class NekoThumbnailCollectionView: UICollectionView {
         cell.layer.borderColor = UIColor.red.cgColor
         
         selectedIndexPath = indexPath
+    }
+    
+    func getItemSize() -> CGSize {
+        return CGSize(width: bounds.size.height * 0.65, height: bounds.size.height * 0.65)
     }
 }

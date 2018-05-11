@@ -25,6 +25,20 @@
 		AB3EE89D2097CE9400D9FBD1 /* NekoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */; };
 		AB3EE8A02097D2AA00D9FBD1 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3EE89F2097D2AA00D9FBD1 /* UIViewEx.swift */; };
 		ABBBAA2C209917E2007929FB /* NekoMainImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */; };
+		ABCAE73D20A4F13D00A8A95E /* AdaptiveElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE73C20A4F13D00A8A95E /* AdaptiveElement.swift */; };
+		ABCAE73F20A4F22800A8A95E /* AdaptiveConstraintContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE73E20A4F22800A8A95E /* AdaptiveConstraintContainer.swift */; };
+		ABCAE74120A4F29900A8A95E /* AdaptiveAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74020A4F29900A8A95E /* AdaptiveAttribute.swift */; };
+		ABCAE74320A4F38100A8A95E /* AdaptiveAttributeTraitCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74220A4F38100A8A95E /* AdaptiveAttributeTraitCollectionExtension.swift */; };
+		ABCAE74520A4F3E800A8A95E /* AdaptiveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74420A4F3E800A8A95E /* AdaptiveInterface.swift */; };
+		ABCAE74720A4F52B00A8A95E /* AdaptiveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74620A4F52B00A8A95E /* AdaptiveBehavior.swift */; };
+		ABCAE74920A4F5F300A8A95E /* AdaptiveViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74820A4F5F300A8A95E /* AdaptiveViewContainer.swift */; };
+		ABCAE74B20A4F6F900A8A95E /* DisplayGamut.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74A20A4F6F900A8A95E /* DisplayGamut.swift */; };
+		ABCAE74D20A4F74B00A8A95E /* ForceTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74C20A4F74B00A8A95E /* ForceTouch.swift */; };
+		ABCAE74F20A4F77D00A8A95E /* Idiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE74E20A4F77D00A8A95E /* Idiom.swift */; };
+		ABCAE75120A4F7BA00A8A95E /* LayoutDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE75020A4F7BA00A8A95E /* LayoutDirection.swift */; };
+		ABCAE75320A4F7E300A8A95E /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE75220A4F7E300A8A95E /* Scale.swift */; };
+		ABCAE75520A4F82900A8A95E /* SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE75420A4F82900A8A95E /* SizeCategory.swift */; };
+		ABCAE75720A4F87F00A8A95E /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE75620A4F87F00A8A95E /* SizeClass.swift */; };
 		ABFE00AC209D20310045BB0F /* RenderingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE00AB209D20310045BB0F /* RenderingContext.swift */; };
 		ABFE16AB209BD9600002BE31 /* UIViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE16AA209BD9600002BE31 /* UIViewControllerEx.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +64,20 @@
 		AB3EE89C2097CE9400D9FBD1 /* NekoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoInfo.swift; sourceTree = "<group>"; };
 		AB3EE89F2097D2AA00D9FBD1 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 		ABBBAA2B209917E2007929FB /* NekoMainImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoMainImageViewController.swift; sourceTree = "<group>"; };
+		ABCAE73C20A4F13D00A8A95E /* AdaptiveElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveElement.swift; sourceTree = "<group>"; };
+		ABCAE73E20A4F22800A8A95E /* AdaptiveConstraintContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveConstraintContainer.swift; sourceTree = "<group>"; };
+		ABCAE74020A4F29900A8A95E /* AdaptiveAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveAttribute.swift; sourceTree = "<group>"; };
+		ABCAE74220A4F38100A8A95E /* AdaptiveAttributeTraitCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveAttributeTraitCollectionExtension.swift; sourceTree = "<group>"; };
+		ABCAE74420A4F3E800A8A95E /* AdaptiveInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveInterface.swift; sourceTree = "<group>"; };
+		ABCAE74620A4F52B00A8A95E /* AdaptiveBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveBehavior.swift; sourceTree = "<group>"; };
+		ABCAE74820A4F5F300A8A95E /* AdaptiveViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveViewContainer.swift; sourceTree = "<group>"; };
+		ABCAE74A20A4F6F900A8A95E /* DisplayGamut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayGamut.swift; sourceTree = "<group>"; };
+		ABCAE74C20A4F74B00A8A95E /* ForceTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouch.swift; sourceTree = "<group>"; };
+		ABCAE74E20A4F77D00A8A95E /* Idiom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Idiom.swift; sourceTree = "<group>"; };
+		ABCAE75020A4F7BA00A8A95E /* LayoutDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDirection.swift; sourceTree = "<group>"; };
+		ABCAE75220A4F7E300A8A95E /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		ABCAE75420A4F82900A8A95E /* SizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCategory.swift; sourceTree = "<group>"; };
+		ABCAE75620A4F87F00A8A95E /* SizeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeClass.swift; sourceTree = "<group>"; };
 		ABFE00AB209D20310045BB0F /* RenderingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingContext.swift; sourceTree = "<group>"; };
 		ABFE16AA209BD9600002BE31 /* UIViewControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +121,7 @@
 		AB3EE8762097BD9800D9FBD1 /* NekoJealousy */ = {
 			isa = PBXGroup;
 			children = (
+				ABCAE73B20A4F10100A8A95E /* Adaptive */,
 				AB2AAF33209E705000BC2CED /* NekoAdmire */,
 				AB3EE89E2097D28B00D9FBD1 /* Extensions */,
 				AB3EE8912097C34F00D9FBD1 /* NekoSelect */,
@@ -131,6 +160,27 @@
 				ABFE16AA209BD9600002BE31 /* UIViewControllerEx.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ABCAE73B20A4F10100A8A95E /* Adaptive */ = {
+			isa = PBXGroup;
+			children = (
+				ABCAE73C20A4F13D00A8A95E /* AdaptiveElement.swift */,
+				ABCAE73E20A4F22800A8A95E /* AdaptiveConstraintContainer.swift */,
+				ABCAE74020A4F29900A8A95E /* AdaptiveAttribute.swift */,
+				ABCAE74220A4F38100A8A95E /* AdaptiveAttributeTraitCollectionExtension.swift */,
+				ABCAE74420A4F3E800A8A95E /* AdaptiveInterface.swift */,
+				ABCAE74620A4F52B00A8A95E /* AdaptiveBehavior.swift */,
+				ABCAE74820A4F5F300A8A95E /* AdaptiveViewContainer.swift */,
+				ABCAE74A20A4F6F900A8A95E /* DisplayGamut.swift */,
+				ABCAE74C20A4F74B00A8A95E /* ForceTouch.swift */,
+				ABCAE74E20A4F77D00A8A95E /* Idiom.swift */,
+				ABCAE75020A4F7BA00A8A95E /* LayoutDirection.swift */,
+				ABCAE75220A4F7E300A8A95E /* Scale.swift */,
+				ABCAE75420A4F82900A8A95E /* SizeCategory.swift */,
+				ABCAE75620A4F87F00A8A95E /* SizeClass.swift */,
+			);
+			path = Adaptive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,20 +256,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB3EE8A02097D2AA00D9FBD1 /* UIViewEx.swift in Sources */,
+				ABCAE75720A4F87F00A8A95E /* SizeClass.swift in Sources */,
+				ABCAE74B20A4F6F900A8A95E /* DisplayGamut.swift in Sources */,
 				AB3EE88C2097BFC700D9FBD1 /* Coordinator.swift in Sources */,
 				AB2AAF32209E704600BC2CED /* NekoAdmireViewController.swift in Sources */,
+				ABCAE74720A4F52B00A8A95E /* AdaptiveBehavior.swift in Sources */,
+				ABCAE74520A4F3E800A8A95E /* AdaptiveInterface.swift in Sources */,
 				AB3EE8992097CA3B00D9FBD1 /* NekoThumbnailCollectionViewController.swift in Sources */,
 				AB1A278720A1027000B287E2 /* NekoMainImageView.swift in Sources */,
 				AB3EE88E2097C0A100D9FBD1 /* AppCoordinator.swift in Sources */,
+				ABCAE73F20A4F22800A8A95E /* AdaptiveConstraintContainer.swift in Sources */,
 				AB1A278520A0FE8100B287E2 /* NekoAdmireView.swift in Sources */,
 				ABFE16AB209BD9600002BE31 /* UIViewControllerEx.swift in Sources */,
 				AB3EE89D2097CE9400D9FBD1 /* NekoInfo.swift in Sources */,
+				ABCAE73D20A4F13D00A8A95E /* AdaptiveElement.swift in Sources */,
+				ABCAE74F20A4F77D00A8A95E /* Idiom.swift in Sources */,
 				AB3EE8782097BD9800D9FBD1 /* AppDelegate.swift in Sources */,
+				ABCAE74D20A4F74B00A8A95E /* ForceTouch.swift in Sources */,
+				ABCAE75120A4F7BA00A8A95E /* LayoutDirection.swift in Sources */,
+				ABCAE75320A4F7E300A8A95E /* Scale.swift in Sources */,
+				ABCAE75520A4F82900A8A95E /* SizeCategory.swift in Sources */,
 				AB3EE88A2097BED500D9FBD1 /* RootCoordinator.swift in Sources */,
+				ABCAE74320A4F38100A8A95E /* AdaptiveAttributeTraitCollectionExtension.swift in Sources */,
 				ABFE00AC209D20310045BB0F /* RenderingContext.swift in Sources */,
+				ABCAE74120A4F29900A8A95E /* AdaptiveAttribute.swift in Sources */,
 				AB1A278920A105FB00B287E2 /* NekoThumbnailCollectionView.swift in Sources */,
 				AB3EE8952097C5C700D9FBD1 /* RootViewController.swift in Sources */,
 				ABBBAA2C209917E2007929FB /* NekoMainImageViewController.swift in Sources */,
+				ABCAE74920A4F5F300A8A95E /* AdaptiveViewContainer.swift in Sources */,
 				AB3EE8932097C44600D9FBD1 /* NekoSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

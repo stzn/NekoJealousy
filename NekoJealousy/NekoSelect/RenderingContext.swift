@@ -30,9 +30,3 @@ struct Observer<State> {
     var strongReferences: [Any]
     var updates: [(State) -> ()]
 }
-
-//struct RenderedElement<Element, State> {
-//    var element: Element
-//    var strongReferences: [Any]
-//    var update: (State) -> ()
-//}
