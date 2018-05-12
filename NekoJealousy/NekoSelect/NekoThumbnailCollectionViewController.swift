@@ -64,7 +64,7 @@ extension NekoThumbnailCollectionViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelect?(indexPath)
-    }
+    }    
 }
 
 extension NekoThumbnailCollectionViewController: UICollectionViewDelegateFlowLayout {

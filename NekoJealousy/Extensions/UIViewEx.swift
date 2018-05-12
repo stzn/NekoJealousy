@@ -46,7 +46,21 @@ func fill() -> [Constraint] {
     ]
 }
 
+func fill(_ view: UIView, _ to: UIView) -> [NSLayoutConstraint] {
+    return [
+        equal(\UIView.leftAnchor)(view, to),
+        equal(\UIView.topAnchor)(view, to),
+        equal(\UIView.rightAnchor)(view, to),
+        equal(\UIView.bottomAnchor)(view, to)
+    ]
+}
+
+var screenSize: CGFloat {
+    get { return min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) }
+}
+
 extension UIView {
+    
     func addSubview(_ child: UIView, constraints: [Constraint]) {
         addSubview(child)
         child.translatesAutoresizingMaskIntoConstraints = false

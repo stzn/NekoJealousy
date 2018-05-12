@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class NekoAdmireView: UIView {
+final class NekoAdmireView: UIView, AdaptiveInterface {
+    var adaptiveElements: [AdaptiveElement] = []
+    
 
     let stackView: UIStackView = {
         let sv = UIStackView()
@@ -39,7 +41,7 @@ final class NekoAdmireView: UIView {
     let label: UILabel = {
         let l = UILabel()
         l.numberOfLines = 1
-        l.text = "こすって"
+        l.text = "なでて"
         return l
     }()
 
@@ -52,12 +54,14 @@ final class NekoAdmireView: UIView {
         setup(info: info)
     }
     
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        update(for: traitCollection)
+    }
     
     private func setup(info: NekoInfo) {
         
@@ -75,15 +79,19 @@ final class NekoAdmireView: UIView {
         ])
         
         stackView.addArrangedSubview(imageView, constraints: [
-            aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1),
+            equal(\.widthAnchor, constant: screenSize * 0.8),
+            aspectRatio(\.heightAnchor, \.widthAnchor, multiplier: 1)
         ])
         
         addSubview(stackView, constraints: [
-            equal(\.leftAnchor, constant: 12),
-            equal(\.rightAnchor, constant: -12),
+            equal(\.centerXAnchor),
             equal(\.centerYAnchor)
         ])
         
-        translatesAutoresizingMaskIntoConstraints = false
+        addBehavior(for: [SizeClass.horizontalCompact, SizeClass.verticalCompact], behavior: {
+            self.stackView.axis = .horizontal
+        }, counterBehavior: {
+            self.stackView.axis = .vertical
+        })
     }
 }

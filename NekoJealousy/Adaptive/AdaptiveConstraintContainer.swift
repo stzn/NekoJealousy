@@ -14,7 +14,7 @@ struct AdaptiveConstraintContainer: AdaptiveElement {
     let constraints: [NSLayoutConstraint]
     
     func update(for incomingTraitCollection: UITraitCollection) {
-        if incomingTraitCollection.containsTraits(in:  traitCollection) {
+        if incomingTraitCollection.containsTraits(in: traitCollection) {
             NSLayoutConstraint.activate(constraints)
         } else {
             NSLayoutConstraint.deactivate(constraints)

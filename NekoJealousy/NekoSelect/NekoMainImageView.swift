@@ -79,8 +79,9 @@ final class NekoMainImageView: UIView, AdaptiveInterface {
         
         stackView.addArrangedSubview(imageView)
         
-        addConstraints(for: [SizeClass.horizontalCompact, SizeClass.verticalCompact],
-                       constraints: equal(\.heightAnchor, constant: 0)(imageView, stackView))
+        addConstraints(
+            for: [SizeClass.horizontalCompact, SizeClass.verticalCompact],
+            constraints: equal(\.heightAnchor, constant: 0)(imageView, stackView))
         
         stackView.addArrangedSubview(titleLabel, constraints: [
             equal(\.heightAnchor, constant: titleLabel.intrinsicContentSize.height)
@@ -90,7 +91,7 @@ final class NekoMainImageView: UIView, AdaptiveInterface {
             equal(\.heightAnchor, constant: detailLabel.intrinsicContentSize.height)
             ])
         stackView.addArrangedSubview(button, constraints: [
-            equal(\.widthAnchor, constant: UIScreen.main.bounds.width * 0.6),
+            equal(\.widthAnchor, constant: screenSize * 0.6),
             equal(\.heightAnchor, constant: button.intrinsicContentSize.height)
             ])
         
@@ -102,6 +103,12 @@ final class NekoMainImageView: UIView, AdaptiveInterface {
         
         addConstraints(for: [SizeClass.verticalRegular],
                        constraints: equal(\.bottomAnchor)(stackView, self))
+        
+        addBehavior(for: [SizeClass.verticalRegular], behavior: {
+            self.button.backgroundColor = .blue
+        }, counterBehavior: {
+            self.button.backgroundColor = .red
+        })
     }
     
     func setNekoInfo(info: NekoInfo?) {
@@ -121,5 +128,3 @@ final class NekoMainImageView: UIView, AdaptiveInterface {
         button.addTarget(target, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
     }
 }
-
-

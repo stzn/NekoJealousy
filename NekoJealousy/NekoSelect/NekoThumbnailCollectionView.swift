@@ -9,7 +9,7 @@
 import UIKit
 
 final class NekoThumbnailCollectionView: UICollectionView {
-
+    
     private let reuseIdentifier = "Cell"
     
     var selectedIndexPath: IndexPath? = nil
@@ -23,11 +23,12 @@ final class NekoThumbnailCollectionView: UICollectionView {
     convenience init() {
         let l = UICollectionViewFlowLayout()
         
-        l.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        l.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         l.minimumInteritemSpacing = 0
-        l.minimumLineSpacing = 0
+        l.minimumLineSpacing = 8
         l.scrollDirection = .horizontal
         self.init(frame: .zero, collectionViewLayout: l)
+        self.contentInsetAdjustmentBehavior = .never
         
         setup()
     }
@@ -40,8 +41,6 @@ final class NekoThumbnailCollectionView: UICollectionView {
         
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         backgroundColor = .white
-        
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setCell(indexPath: IndexPath, info: NekoInfo) -> UICollectionViewCell {
@@ -73,6 +72,7 @@ final class NekoThumbnailCollectionView: UICollectionView {
     }
     
     func getItemSize() -> CGSize {
-        return CGSize(width: bounds.size.height * 0.65, height: bounds.size.height * 0.65)
+        let screen = min(self.bounds.width, self.bounds.height)
+        return CGSize(width: screen, height: screen)
     }
 }

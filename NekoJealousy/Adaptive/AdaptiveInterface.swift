@@ -50,6 +50,11 @@ extension AdaptiveInterface {
         addConstraints(for: traitCollection, constraints: constraints)
     }
     
+    func addConstraints(for attributes: [AdaptiveAttribute], constraints: [NSLayoutConstraint]) {
+        let traitCollection = UITraitCollection.create(with: attributes)
+        addConstraints(for: traitCollection, constraints: constraints)
+    }
+    
     func addConstraints(for attribute: AdaptiveAttribute, constraints: NSLayoutConstraint...) {
         let traitCollection = UITraitCollection.create(with: [attribute])
         addConstraints(for: traitCollection, constraints: constraints)

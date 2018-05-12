@@ -91,15 +91,15 @@ final class NekoSelectViewController: UIViewController, RootViewController {
         observer.updates.append({ s in mainImageVC.setNekoInfo(info: s.info) })
         
         add(collectionVC, layout: [
-            equal(\.leftAnchor, constant: 12),
+            equal(\.safeAreaLayoutGuide.leftAnchor, constant: 12),
             equal(\.safeAreaLayoutGuide.topAnchor, constant: 12),
-            equal(\.rightAnchor, constant: -12),
-            equal(\.heightAnchor, constant: UIScreen.main.bounds.size.height * 0.2)
+            equal(\.safeAreaLayoutGuide.rightAnchor, constant: -12),
+            equal(\.heightAnchor, constant: screenSize * 0.4)
         ])
         
         add(mainImageVC, layout: [
-            equal(\.leftAnchor, constant: 12),
-            equal(\.rightAnchor, constant: -12),
+            equal(\.safeAreaLayoutGuide.leftAnchor, constant: 12),
+            equal(\.safeAreaLayoutGuide.rightAnchor, constant: -12),
             equal(\.topAnchor, \.bottomAnchor, mainImageVC.view, collectionVC.view, constant: 12),
             equal(\.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
